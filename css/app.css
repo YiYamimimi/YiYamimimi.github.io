@@ -1866,9 +1866,10 @@ main >.inner {
 }
 #tool .item {
   display: none;
-  width: 1.875rem;
+  width: 3rem;
   height: 1.875rem;
   opacity: 0.5;
+  font-size: 1.5rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -1881,7 +1882,7 @@ main >.inner {
 #tool .player {
   display: inline-flex;
   flex-direction: row-reverse;
-  font-size: 1.5em;
+  font-size: 2.5em;
   width: auto;
   height: auto;
 }
@@ -1939,7 +1940,7 @@ main >.inner {
   color: var(--primary-color);
 }
 #tool.affix .player {
-  font-size: 1em;
+  font-size: 1.4rem;
   flex-direction: column-reverse;
 }
 #tool.affix .player > .btn+.btn {
