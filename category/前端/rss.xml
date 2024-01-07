@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！ • Posts by &#34;前端&#34; category</title>
+        <link>http://example.com</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
+        <lastBuildDate>Sun, 12 Apr 2020 20:46:25 +0800</lastBuildDate>
+        <category>Hexo</category>
+        <category>教程</category>
+        <category>Foo</category>
+        <category>Bar</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2020/04/12/front-end/no-title/</guid>
+            <title>第1周 计算</title>
+            <link>http://example.com/2020/04/12/front-end/no-title/</link>
+            <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;This post doesn’t have a title. Make sure it’s accessible.&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

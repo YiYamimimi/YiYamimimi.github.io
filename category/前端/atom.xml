@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！ • Posts by &#34;前端&#34; category</title>
+    <link href="http://example.com" />
+    <updated>2020-04-12T12:46:25.000Z</updated>
+    <category term="Hexo" />
+    <category term="教程" />
+    <category term="Foo" />
+    <category term="Bar" />
+    <entry>
+        <id>http://example.com/2020/04/12/front-end/no-title/</id>
+        <title>第1周 计算</title>
+        <link rel="alternate" href="http://example.com/2020/04/12/front-end/no-title/"/>
+        <content type="html">&lt;p&gt;This post doesn’t have a title. Make sure it’s accessible.&lt;/p&gt;
+</content>
+        <updated>2020-04-12T12:46:25.000Z</updated>
+    </entry>
+</feed>
