@@ -1,0 +1,654 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+
+<link rel="canonical" href="http://example.com/2023/01/02/front-end/no-title/">
+
+
+
+  <title>
+Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ） - 前端 |
+YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！ = Welcome to my blog</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class='container'>
+  <div class='loader'>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--text'></div>
+  </div>
+</div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-01-02 20:46:25">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-01-02T20:46:25+08:00">2023-01-02</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">YiYamimimi</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://p1.ssl.qhimg.com/t0136d0e5a782a372cd.jpg"></li>
+          <li class="item" data-background-image="https://img.zcool.cn/community/013fa45c02a40ea80121ab5d00a3a3.jpg@2o.jpg"></li>
+          <li class="item" data-background-image="https://image11.m1905.cn/uploadfile/2017/1117/20171117100417411827.jpg"></li>
+          <li class="item" data-background-image="https://e0.ifengimg.com/04/2019/0620/8AA4914547A6AAE4E71D4B8C5297376F62AF059F_size237_w1464_h913.jpeg"></li>
+          <li class="item" data-background-image="http://www.cgstheater.cn/repository/image/410fe1cd-eb26-41ed-9238-55e0ae3ed91b.jpg_1180xa.jpg"></li>
+          <li class="item" data-background-image="https://img.zcool.cn/community/01d7655dda87eba8012053c047e1fe.jpg@1280w_1l_2o_100sh.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/front-end/" itemprop="item" rel="index" title="分类于 前端"><span itemprop="name">前端</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/02/front-end/no-title/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="YiYamimimi">
+    <meta itemprop="description" content="Welcome to my blog, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="excel-导入导出前端处理xslx"><a class="anchor" href="#excel-导入导出前端处理xslx">#</a> Excel 导入导出（前端处理：xslx）</h1>
+<ol>
+<li><strong>调用文件对象的</strong> <strong>arrayBuffer</strong> 方法读取文件，然后使用 **xslx.**<strong>read</strong> 方法解析数为 <strong>Excel 工作簿对象</strong></li>
+<li><strong>readAsBinaryString</strong> 和 <strong>readAsArrayBuffer</strong> 是 <strong>FileReader</strong> 对象的两种不同读取文件的方式：</li>
+</ol>
+<blockquote>
+<ul>
+<li>创建 <strong>FileReader</strong> 对象。使用<strong> FileReader</strong> <strong>对象的读取文件方法</strong>： <strong>readAsBinaryString</strong> ，将文件读取为二进制字符串；或使用 <strong>readAsArrayBuffer</strong> 方法会将文件读取为二进制数据缓冲区，即<strong> ArrayBuffer 对象。</strong></li>
+<li>再使用 **xslx.**<strong>read</strong> 方法解析数据为 Excel 工作簿对象</li>
+</ul>
+</blockquote>
+<p>3. 下图为<strong> Excel 工作簿对象</strong>实例：<br />
+<img data-src="https://s2.loli.net/2024/01/16/Bnj6OHGy1V8TeIq.png" alt="输入图片说明" /><img data-src="https://cdn.nlark.com/yuque/0/2023/webp/32496480/1703057873177-0ebecc5d-f693-47af-9191-4f6e983747fa.webp?x-oss-process=image%2Fresize%2Cw_588%2Climit_0" alt="" /><br />
+<img data-src="https://s2.loli.net/2024/01/16/8OATF9epYVawxur.png" alt="输入图片说明" /><img data-src="https://cdn.nlark.com/yuque/0/2024/webp/32496480/1705325153314-84eec0f5-a70b-4f40-ba5a-3b6c51fcf013.webp?x-oss-process=image%2Fresize%2Cw_720%2Climit_0" alt="" /></p>
+<h2 id="代码示例"><a class="anchor" href="#代码示例">#</a> 代码示例</h2>
+<h3 id="导入excel数据"><a class="anchor" href="#导入excel数据">#</a> 导入 Excel 数据</h3>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const reader = new FileReader()</span><br><span class="line">reader.readAsBinaryString(file)</span><br><span class="line">reader.onload = function (e) &#123; </span><br><span class="line">    const data = e.target.result</span><br><span class="line">    let wb = XLSX.read(data, &#123;//Excel 工作簿对象，打印如上</span><br><span class="line">        type: &#x27;binary&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const reader = new FileReader()</span><br><span class="line">reader.readAsArrayBuffer(file)</span><br><span class="line">reader.onload = function (e) &#123;</span><br><span class="line">    const data = e.target.result</span><br><span class="line">    let wb = XLSX.read(data, &#123;</span><br><span class="line">        type: &#x27;array&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<details><summary>解析</summary><div>
+<blockquote>
+<ol>
+<li>创建 <strong>FileReader</strong> 对象。</li>
+<li>使用<strong> FileReader</strong> <strong>对象的读取文件方法</strong>： <strong>readAsBinaryString</strong> ，将文件读取为二进制字符串。</li>
+</ol>
+<p>（使用 <strong>readAsArrayBuffer</strong> 方法会将文件读取为二进制数据缓冲区，即<strong> ArrayBuffer 对象</strong>）</p>
+<ol>
+<li>设置 <strong>onload</strong> 回调函数，该函数在文件读取成功后触发。</li>
+<li>在回调函数中，通过 <strong>e.target.result</strong> 获取读取文件成功的结果值，即文件的二进制数据。</li>
+<li>使用 <strong>XLSX.read</strong> 方法解析<strong>二进制字符串</strong>或<strong> ArrayBuffer 对象</strong>为 Excel 工作簿对象</li>
+</ol>
+<p>（<strong>type: 'binary'</strong> 表示解析的数据类型是二进制字符串；<strong>type: 'array'<strong> 表解析的数据类型是</strong> ArrayBuffer 对象</strong>）</p>
+<ol>
+<li>如果提供了回调函数 <strong>callback</strong>，则调用该函数，并将解析得到的 <strong>workbook</strong> 对象传递给回调函数。</li>
+</ol>
+<p>这个流程适用于在前端处理 Excel 文件，你可以在回调函数中进一步处理 <strong>workbook</strong> 对象，比如获取工作表、将工作表转换为 JSON 等。</p>
+<p>/*</p>
+<p><strong>readAsBinaryString</strong> 和 <strong>readAsArrayBuffer</strong> 是 <strong>FileReader</strong> 对象的两种不同读取文件的方式。</p>
+<p>readAsBinaryString 方法是过时的</p>
+<p>官方推荐使用 readAsArrayBuffer 方法</p>
+<p>*/</p>
+</blockquote>
+</div></details>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input ref=&quot;excel-upload-input&quot; class=&quot;excel-upload-input&quot; type=&quot;file&quot; accept=&quot;.xlsx, .xls&quot; @change=&quot;handleClick&quot;&gt;</span><br><span class="line"></span><br><span class="line">let _file = e.target.files[0];//获取input标签里的文件</span><br><span class="line"></span><br><span class="line">_file.arrayBuffer().then((res) =&gt; &#123;</span><br><span class="line">    const wb = XLSX.read(res);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<details><summary>解析</summary><div>
+<blockquote>
+<p>使用 arrayBuffer 方法，更符合现代 JavaScript 异步风格</p>
+<ol>
+<li>获取 input 标签里的文件</li>
+<li><strong>调用文件对象的</strong> <strong>arrayBuffer</strong> 方法，该方法返回一个 Promise，该 Promise 在文件数据准备好时解析。</li>
+<li>在 <strong>then</strong> 方法中，获取解析后的二进制数据 <strong>res</strong>。</li>
+<li>使用 <strong>XLSX.read</strong> 方法解析二进制数据，得到 <strong>wb</strong>，这里的 <strong>read</strong> 方法是你项目中封装的读取 Excel 数据的函数。</li>
+</ol>
+</blockquote>
+</div></details>
+<h3 id="将数据封装好后传给后端"><a class="anchor" href="#将数据封装好后传给后端">#</a> 将数据封装好后传给后端</h3>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// XLSX.utils.sheet_to_json</span><br><span class="line">const sheet1 = wb.Sheets.Sheet1</span><br><span class="line">const _data = utils.sheet_to_json(sheet1);</span><br><span class="line"></span><br><span class="line">const wsname = wb.SheetNames[0]; //取Excel 工作簿对象的第一张表</span><br><span class="line">const ws = XLSX.utils.sheet_to_json(wb.Sheets[wsname]); //将那张表转成json表格内容(实际上是数组)</span><br><span class="line">//把解析出来的Excel数据，直接转成表格需要的数据</span><br><span class="line">ws.forEach((item) =&gt; &#123;</span><br><span class="line">    that.lists.push(&#123;</span><br><span class="line">        //处理后端要接收的数据格式</span><br><span class="line">        // factoryName: item[&quot;工厂&quot;],</span><br><span class="line">        // wokhouseName: item[&quot;车间&quot;],</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(that.lists);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<details><summary>解析</summary><div>
+<blockquote>
+<ol>
+<li>取 Excel 工作簿对象的第一张表</li>
+<li>使用<strong> XLSX.utils.sheet_to_json</strong> 将那张表转成 json 表格内容</li>
+<li>可处理转化的 JSON 数据为后端所需要的格式</li>
+</ol>
+</blockquote>
+</div></details>
+<h3 id="导出数据"><a class="anchor" href="#导出数据">#</a> 导出数据</h3>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">let book = XLSX.utils.book_new()</span><br><span class="line">let aoa = [</span><br><span class="line">  [&#x27;姓名&#x27;, &#x27;性别&#x27;, &#x27;年龄&#x27;, &#x27;注册时间&#x27;],</span><br><span class="line">  [&#x27;张三&#x27;, &#x27;男&#x27;, 18, new Date()],</span><br><span class="line">  [&#x27;李四&#x27;, &#x27;女&#x27;, 22, new Date()]</span><br><span class="line">];</span><br><span class="line">// 将一个二维数组转成sheet</span><br><span class="line">// aoa_to_sheet: 这个工具类最强大也最实用了，将一个二维数组转成sheet，会自动处理number、string、boolean、date等类型数据；</span><br><span class="line">let sheet = XLSX.utils.aoa_to_sheet(aoa);</span><br><span class="line">XLSX.utils.book_append_sheet(book, sheet, &quot;sheet1&quot;)</span><br><span class="line">XLSX.writeFile(book, `user$&#123;new Date().getTime()&#125;.xls`)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const wb = XLSX.utils.book_new(); </span><br><span class="line">let data = [</span><br><span class="line">  &#123; name: &quot;张三&quot;, id: 100, score: 99 &#125;,</span><br><span class="line">  &#123; name: &quot;张四&quot;, id: 200, score: 99 &#125;,</span><br><span class="line">  &#123; name: &quot;张五&quot;, id: 300, score: 99 &#125;</span><br><span class="line">]//转化JSON数组 </span><br><span class="line">const ws = XLSX.utils.json_to_sheet(data); </span><br><span class="line">XLSX.utils.book_append_sheet(wb, ws, &quot;people&quot;); </span><br><span class="line">XLSX.writeFile(wb, &quot;test1.xlsx&quot;);</span><br></pre></td></tr></table></figure></p>
+<details><summary>解析</summary><div>
+<blockquote>
+<ol>
+<li>使用 XLSX.utils.aoa_to_sheet 方法将一个二维数组转化为一个工作表 (sheet)。</li>
+</ol>
+<p>一个包含对象的数组 <strong>data</strong>，通过 <strong>XLSX.utils.json_to_sheet</strong> 方法将其转换为 Excel 工作表</p>
+<ol>
+<li>使用<strong> XLSX.utils.book_new</strong> 方法创建一个新的工作簿 (book)。</li>
+<li>使用<strong> XLSX.utils.book_append_sheet</strong> 方法将之前创建的工作表添加到工作簿中，并命名为 &quot;sheet1&quot;。</li>
+<li>使用<strong> XLSX.writeFile</strong> 方法将工作簿保存为一个 Excel 文件。</li>
+</ol>
+</blockquote>
+</div></details>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const reader = new FileReader()</span><br><span class="line">reader.readAsBinaryString(file)</span><br><span class="line">//onload 回调函数，该函数在文件读取成功后触发</span><br><span class="line">reader.onload = function (e) &#123; </span><br><span class="line">    //回调函数中，通过 e.target.result 获取读取文件成功的结果值，即文件的二进制数据BinaryString</span><br><span class="line">    const data = e.target.result</span><br><span class="line">    //使用 XLSX.read 方法解析二进制数据BinaryString，type: &#x27;binary为 Excel 工作簿对象</span><br><span class="line">    let wb = XLSX.read(data, &#123;</span><br><span class="line">        type: &#x27;binary&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* </span><br><span class="line">readAsBinaryString 和 readAsArrayBuffer 是 FileReader 对象的两种不同读取文件的方式。</span><br><span class="line">readAsBinaryString 方法是过时的</span><br><span class="line">官方推荐使用 readAsArrayBuffer 方法</span><br><span class="line">*/</span><br><span class="line">const reader = new FileReader()</span><br><span class="line">reader.readAsArrayBuffer(file)</span><br><span class="line">reader.onload = function (e) &#123;</span><br><span class="line">    const data = e.target.result</span><br><span class="line">    let wb = XLSX.read(data, &#123;//Excel 工作簿对象</span><br><span class="line">        type: &#x27;array&#x27;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">//————————————————————————————————————————————————————————</span><br><span class="line"></span><br><span class="line">&lt;input ref=&quot;excel-upload-input&quot; class=&quot;excel-upload-input&quot; type=&quot;file&quot; accept=&quot;.xlsx, .xls&quot; @change=&quot;handleClick&quot;&gt;</span><br><span class="line"></span><br><span class="line">//使用 arrayBuffer 方法，更符合现代 JavaScript 异步风格</span><br><span class="line">let _file = e.target.files[0];//获取input标签里的文件</span><br><span class="line">//调用文件对象的arrayBuffer方法，该方法返回一个 Promise，该 Promise 在文件数据准备好时解析</span><br><span class="line">_file.arrayBuffer().then((res) =&gt; &#123;</span><br><span class="line">	//在 then 方法中，获取解析后的二进制数据 res。</span><br><span class="line">    const wb = read(res);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//————————————————————————————————————————————————————</span><br><span class="line">// XLSX.utils.sheet_to_json</span><br><span class="line">const sheet1 = wb.Sheets.Sheet1</span><br><span class="line">const _data = utils.sheet_to_json(sheet1);</span><br><span class="line"></span><br><span class="line">const wsname = wb.SheetNames[0]; //取Excel 工作簿对象的第一张表</span><br><span class="line">const ws = XLSX.utils.sheet_to_json(wb.Sheets[wsname]); //将那张表转成json表格内容(实际上是 )</span><br><span class="line">//把解析出来的Excel数据，直接转成表格需要的数据</span><br><span class="line">ws.forEach((item) =&gt; &#123;</span><br><span class="line">    that.lists.push(&#123;</span><br><span class="line">        //处理后端要接收的数据格式</span><br><span class="line">        // factoryName: item[&quot;工厂&quot;],</span><br><span class="line">        // wokhouseName: item[&quot;车间&quot;],</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(that.lists);</span><br><span class="line">&#125;) </span><br></pre></td></tr></table></figure></p>
+<h3 id="预览vue-officeexceldocx-preview"><a class="anchor" href="#预览vue-officeexceldocx-preview">#</a> 预览（vue-office/excel&quot;……；docx-preview）</h3>
+<p><img data-src="https://s2.loli.net/2024/01/16/PAGosrNldZ5BSYE.png" alt="输入图片说明" /><img data-src="https://cdn.nlark.com/yuque/0/2023/png/32496480/1701781354926-92e813d6-8499-4a15-8d5e-15ce458bce36.png" alt="image.png" /></p>
+<p>上传后预览<br />
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;vueofficeExcel v-if=&quot;excelSrc&quot; :src=&quot;excelSrc&quot; style=&quot;height:500px&quot;&gt;&lt;/vueofficeExcel&gt;</span><br><span class="line">&lt;input type=&quot;file&quot; @change=&quot;change&quot; /&gt;</span><br><span class="line"></span><br><span class="line">import vueofficeExcel from &quot;@vue-office/excel&quot;;</span><br><span class="line">import vueofficedocx from &quot;@vue-office/docx&quot;;</span><br><span class="line">import vueofficedpdf from &quot;@vue-office/pdf&quot;;</span><br><span class="line"></span><br><span class="line">change(e) &#123;</span><br><span class="line">  let _file = e.target.files[0]</span><br><span class="line">  const fr = new FileReader();</span><br><span class="line">  fr.readAsDataURL(_file);</span><br><span class="line">  fr.onload = (e) =&gt;&#123;</span><br><span class="line">    this.excelSrc = e.target.result;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><br />
+ 上传后预览（做图片缩略图）<br />
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let fr = new FileReader(); </span><br><span class="line">fr.readAsDataURL(file);</span><br><span class="line">let self = this;</span><br><span class="line">fr.onload = function () &#123;</span><br><span class="line">  self.imgbase64 = fr.result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br />
+docx-preview 也可用于 docx 预览<br />
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ref=&quot;docxPreview&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">import &#123; renderAsync &#125; from &quot;docx-preview&quot;</span><br><span class="line"></span><br><span class="line">let _file = e.target.files[0];</span><br><span class="line">//blob, arrayBuffer</span><br><span class="line">renderAsync(_file, this.$refs.docxPreview)</span><br></pre></td></tr></table></figure></p>
+<h1 id="二-excel-导入导出后端处理hutoolpoi-easy-excel"><a class="anchor" href="#二-excel-导入导出后端处理hutoolpoi-easy-excel">#</a> 二、Excel 导入导出 (后端处理：hutool+poi || Easy Excel)</h1>
+<h2 id="1-前端"><a class="anchor" href="#1-前端">#</a> 1、前端</h2>
+<blockquote>
+<p>思路：</p>
+<ol>
+<li>导入：前端直接返回给后端<strong>文件对象</strong></li>
+<li>导出选中的或导出全部：<strong>将选中的 id 记录在 ids 数组里</strong>；根据 ids 数组长度判断是选中导出还是导出全部；</li>
+</ol>
+<p><strong>调用接口：</strong></p>
+<p>导出全部的可向后端传入 ids.join (',')// 把数组转成字符串</p>
+<p>导出全部的传入用户名参数</p>
+</blockquote>
+<p>代码示例<br />
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">handleImport(res, file, fileList) &#123;</span><br><span class="line">  if (res.code === &#x27;200&#x27;) &#123;</span><br><span class="line">    this.$message.success(&quot;操作成功&quot;)</span><br><span class="line">    this.load(1)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    this.$message.error(res.msg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">exportData() &#123;   // 批量导出数据</span><br><span class="line">  if (!this.ids.length) &#123;   // 没有选择行的时候，全部导出  或者根据我的搜索条件导出</span><br><span class="line">    window.open(&#x27;http://localhost:9090/user/export?token=&#x27; + this.user.token + &quot;&amp;username=&quot;</span><br><span class="line">        + this.username + &quot;&amp;name=&quot; + this.name)</span><br><span class="line">  &#125; else &#123;      // [1,2,3] =&gt; &#x27;1,2,3&#x27;//选中的导出</span><br><span class="line">    let idStr = this.ids.join(&#x27;,&#x27;)//把数组转成字符串</span><br><span class="line">    window.open(&#x27;http://localhost:9090/user/export?token=&#x27; + this.user.token + &#x27;&amp;ids=&#x27; + idStr)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<hr />
+<h2 id="2-后端使用hutool处理excel-文件"><a class="anchor" href="#2-后端使用hutool处理excel-文件">#</a> 2、后端使用 Hutool 处理 Excel 文件</h2>
+<h3 id="hutool-poi是针对apache-poi的封装因此需要用户自行引入poi库"><a class="anchor" href="#hutool-poi是针对apache-poi的封装因此需要用户自行引入poi库">#</a> Hutool-poi 是针对 Apache POI 的封装，因此需要用户自行引入 POI 库</h3>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;cn.hutool&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;hutool-all&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.3.7&lt;/version&gt; </span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.2.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="导入"><a class="anchor" href="#导入">#</a> 导入</h3>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@PostMapping(&quot;/import&quot;)</span><br><span class="line">public Result importData(MultipartFile file) throws IOException &#123;</span><br><span class="line">    ExcelReader reader = ExcelUtil.getReader(file.getInputStream());</span><br><span class="line">    List&lt;User&gt; userList = reader.readAll(User.class);//读取所有数据并转成user类</span><br><span class="line">    // 写入数据到数据库</span><br><span class="line">    try &#123;</span><br><span class="line">        userService.saveBatch(userList);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return Result.error(&quot;数据批量导入错误&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return Result.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<details><summary>解析</summary><div>
+<blockquote>
+<p><strong>ExcelUtil</strong> ： Hutool-poi 模块中的一个工具类，用于处理 Excel 文件的读写。</p>
+<ol>
+<li>通过 <strong>ExcelUtil.getReader(file.getInputStream())</strong> 获取了一个 <strong>ExcelReader</strong> 对象</li>
+<li>使用 <strong>reader.readAll(User.class)</strong> 读取了 Excel 中的所有数据并将其转换为 <strong>User</strong> 类的对象列表。</li>
+<li>最后将这些对象列表通过 <strong>userService.saveBatch(userList)</strong> 写入到数据库中。</li>
+</ol>
+</blockquote>
+</div></details>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">@GetMapping(&quot;/export&quot;)</span><br><span class="line">public void exportData(@RequestParam(required = false) String username,</span><br><span class="line">                       @RequestParam(required = false) String name,</span><br><span class="line">                       @RequestParam(required = false) String ids,//1,2,3,4</span><br><span class="line">                       HttpServletResponse response) throws IOException &#123;</span><br><span class="line">    ExcelWriter writer = ExcelUtil.getWriter(true);</span><br><span class="line">    List&lt;User&gt; list;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    if (StrUtil.isNotBlank(ids)) &#123;</span><br><span class="line">        // 将逗号分隔的字符串转换为整数列表：[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]  =&gt;[1,2,3]</span><br><span class="line">        List&lt;Integer&gt; idsArr1 = Arrays.stream(ids.split(regex &quot;,&quot;)).map(Integer::value0f).collect(Collectors.tolist());</span><br><span class="line">        queryWrapper.in(column: &quot;id&quot;, idsArr1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 第一种全部导出或者条件导出</span><br><span class="line">        queryWrapper.like(StrUtil.isNotBlank(username), column: &quot;username&quot;, username);</span><br><span class="line">        queryWrapper.like(StrUtil.isNotBlank(name), column: &quot;name&quot;, name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    list = userService.list(queryWrapper);</span><br><span class="line"></span><br><span class="line">    // 将查询到的用户数据写入 Excel</span><br><span class="line">    writer.write(list, true);//告知那些key是头，让后把key一样的value放在同一列</span><br><span class="line">    // 设置浏览器响应的格式</span><br><span class="line">response.setContentType(&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8&quot;);</span><br><span class="line">response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment;filename=&quot; + URLEncoder.encode(&quot;用户信息表&quot;, &quot;UTF-8&quot;) + &quot;.xlsx&quot;);</span><br><span class="line"></span><br><span class="line">ServletOutputStream out = response.getOutputStream();</span><br><span class="line">writer.flush(out, true);</span><br><span class="line">out.close();</span><br><span class="line">writer.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<details><summary>解析</summary><div>
+<blockquote>
+<p>判断前端是否有传过来 ids，有就将其转成数组并 queryWrapper 查询出，没有就根据其他条件查询出数据列表</p>
+<ol>
+<li>创建 ExcelWriter 对象，参数为是否是 XLSX 格式</li>
+<li>将查询到的用户数据写入 Excel，并告知那些 key 是表头，让后把 key 一样的 value 放在同一列</li>
+<li>设置浏览器响应的格式和文件名</li>
+<li>通过 <strong>writer.flush(out, true)</strong> 将 Excel 数据输出到浏览器。</li>
+<li>最后关闭输出流和 ExcelWriter 对象</li>
+</ol>
+</blockquote>
+</div></details>
+<h3 id="如何给导出的excel表头设置中文"><a class="anchor" href="#如何给导出的excel表头设置中文">#</a> 如何给导出的 excel 表头设置中文？</h3>
+<p>只需要在实体类的属性上面加一个注解 @Alias (&quot;中文&quot;)<br />
+<img data-src="https://s2.loli.net/2024/01/16/sPVjA85DLTYcekw.png" alt="输入图片说明" /></p>
+<h3 id="list里的对象有键值对键为表头值为表头下的内容"><a class="anchor" href="#list里的对象有键值对键为表头值为表头下的内容">#</a> list 里的对象有键值对，键为表头，值为表头下的内容</h3>
+<blockquote>
+<p>查询出来的 list 里是一条条 user 对象，所以有键值对<br />
+<img data-src="https://s2.loli.net/2024/01/16/fesVv3dWSytCnor.png" alt="输入图片说明" /></p>
+</blockquote>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2MuaHV0b29sLmNuL3BhZ2VzL0V4Y2VsV3JpdGVyLyNfMi0lRTUlODYlOTklRTUlODclQkFtYXAlRTYlOTUlQjAlRTYlOEQlQUU=">Excel 生成 - ExcelWriter | Hutool</span></p>
+<p>map 数据的写法<br />
+<img data-src="https://s2.loli.net/2024/01/16/PtLFrJlR7Ei1O8N.png" alt="输入图片说明" /><br />
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@GetMapping(&quot;/export&quot;)</span><br><span class="line">public void exportData(@RequestParam(required = false) String username,</span><br><span class="line">                       @RequestParam(required = false) String name,</span><br><span class="line">                       @RequestParam(required = false) String ids,//1,2,3,4</span><br><span class="line">                       HttpServletResponse response) throws IOException &#123;</span><br><span class="line">    ExcelWriter writer = ExcelUtil.getWriter(true);</span><br><span class="line">    List&lt;User&gt; list;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    if (StrUtil.isNotBlank(ids)) &#123;</span><br><span class="line">        // 将逗号分隔的字符串转换为整数列表：[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]  =&gt;[1,2,3]</span><br><span class="line">        List&lt;Integer&gt; idsArr1 = Arrays.stream(ids.split(regex &quot;,&quot;)).map(Integer::value0f).collect(Collectors.tolist());</span><br><span class="line">        queryWrapper.in(column: &quot;id&quot;, idsArr1);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 第一种全部导出或者条件导出</span><br><span class="line">        queryWrapper.like(StrUtil.isNotBlank(username), column: &quot;username&quot;, username);</span><br><span class="line">        queryWrapper.like(StrUtil.isNotBlank(name), column: &quot;name&quot;, name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    list = userService.list(queryWrapper);</span><br><span class="line"></span><br><span class="line">    // 将查询到的用户数据写入 Excel</span><br><span class="line">    writer.write(list, true);//告知那些key是头，让后把key一样的value放在同一列</span><br><span class="line">    // 设置浏览器响应的格式</span><br><span class="line">response.setContentType(&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8&quot;);</span><br><span class="line">response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment;filename=&quot; + URLEncoder.encode(&quot;用户信息表&quot;, &quot;UTF-8&quot;) + &quot;.xlsx&quot;);</span><br><span class="line"></span><br><span class="line">ServletOutputStream out = response.getOutputStream();</span><br><span class="line">writer.flush(out, true);</span><br><span class="line">out.close();</span><br><span class="line">writer.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@PostMapping(&quot;/import&quot;)</span><br><span class="line">public Result importData(MultipartFile file) throws IOException &#123;</span><br><span class="line">    ExcelReader reader = ExcelUtil.getReader(file.getInputStream());</span><br><span class="line">    List&lt;User&gt; userList = reader.readAll(User.class);//读取所有数据并转成user类</span><br><span class="line">    // 写入数据到数据库</span><br><span class="line">    try &#123;</span><br><span class="line">        userService.saveBatch(userList);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return Result.error(&quot;数据批量导入错误&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return Result.success();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>​</p>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-01-16 20:21:52" itemprop="dateModified" datetime="2024-01-16T20:21:52+08:00">2024-01-16</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>YiYamimimi <i class="ic i-at"><em>@</em></i>每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/01/02/front-end/no-title/" title="Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）">http://example.com/2023/01/02/front-end/no-title/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2020/08/13/computer-science/note/theme-shoka-doc/special/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;p1.ssl.qhimg.com&#x2F;t0136d0e5a782a372cd.jpg" title="Step.4 主题特殊功能">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Theme Shoka Documentation</span>
+  <h3>Step.4 主题特殊功能</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;c-ssl.duitang.com&#x2F;uploads&#x2F;item&#x2F;201712&#x2F;29&#x2F;20171229203934_M5FxG.jpeg" title="Hello World">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Hello World</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#excel-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86xslx"><span class="toc-number">1.</span> <span class="toc-text"> Excel 导入导出（前端处理：xslx）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5excel%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 导入 Excel 数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85%E5%A5%BD%E5%90%8E%E4%BC%A0%E7%BB%99%E5%90%8E%E7%AB%AF"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 将数据封装好后传给后端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 导出数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88vue-officeexceldocx-preview"><span class="toc-number">1.1.4.</span> <span class="toc-text"> 预览（vue-office&#x2F;excel&quot;……；docx-preview）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-excel-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%90%8E%E7%AB%AF%E5%A4%84%E7%90%86hutoolpoi-easy-excel"><span class="toc-number">2.</span> <span class="toc-text"> 二、Excel 导入导出 (后端处理：hutool+poi || Easy Excel)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%89%8D%E7%AB%AF"><span class="toc-number">2.1.</span> <span class="toc-text"> 1、前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%8E%E7%AB%AF%E4%BD%BF%E7%94%A8hutool%E5%A4%84%E7%90%86excel-%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text"> 2、后端使用 Hutool 处理 Excel 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hutool-poi%E6%98%AF%E9%92%88%E5%AF%B9apache-poi%E7%9A%84%E5%B0%81%E8%A3%85%E5%9B%A0%E6%AD%A4%E9%9C%80%E8%A6%81%E7%94%A8%E6%88%B7%E8%87%AA%E8%A1%8C%E5%BC%95%E5%85%A5poi%E5%BA%93"><span class="toc-number">2.2.1.</span> <span class="toc-text"> Hutool-poi 是针对 Apache POI 的封装，因此需要用户自行引入 POI 库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BB%99%E5%AF%BC%E5%87%BA%E7%9A%84excel%E8%A1%A8%E5%A4%B4%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 如何给导出的 excel 表头设置中文？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list%E9%87%8C%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%9C%89%E9%94%AE%E5%80%BC%E5%AF%B9%E9%94%AE%E4%B8%BA%E8%A1%A8%E5%A4%B4%E5%80%BC%E4%B8%BA%E8%A1%A8%E5%A4%B4%E4%B8%8B%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.4.</span> <span class="toc-text"> list 里的对象有键值对，键为表头，值为表头下的内容</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/01/02/front-end/no-title/" rel="bookmark" title="Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）">Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="YiYamimimi"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">YiYamimimi</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">10</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">5</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">4</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL1lpWWFtaW1pbWk/dGFiPXJlcG9zaXRvcmllcw==" title="https:&#x2F;&#x2F;github.com&#x2F;YiYamimimi?tab&#x3D;repositories"><i class="ic i-github"></i></span>
+      <span class="exturl item csdn" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxOTg1ODY5P3R5cGU9YmxvZw==" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_51985869?type&#x3D;blog"><i class="ic i-csdn"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2020/08/13/computer-science/note/theme-shoka-doc/special/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/special/" title="Step.4 主题特殊功能">Step.4 主题特殊功能</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/theme-shoka-doc/" title="Hexo主题Shoka &amp; multi-markdown-it渲染器使用说明">Hexo主题Shoka & multi-markdown-it渲染器使用说明</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/config/" title="Step.2 基本配置">Step.2 基本配置</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2018/07/24/computer-science/note/theme-shoka-doc/markdown/" title="Markdown Style test">Markdown Style test</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2019/07/25/computer-science/note/theme-shoka-doc/code-highlight/" title="Code Highlight Style test">Code Highlight Style test</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/dependents/" title="Step.1 依赖插件">Step.1 依赖插件</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/front-end/" title="分类于 前端">前端</a>
+</div>
+
+    <span><a href="/2023/01/02/front-end/no-title/" title="Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）">Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/display/" title="Step.3 界面显示">Step.3 界面显示</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/algorithm/" title="分类于 算法">算法</a>
+</div>
+
+    <span><a href="/2020/04/12/algorithm/no-title/" title="第1周 计算">第1周 计算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">YiYamimimi @ YiYamimimi</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/01/02/front-end/no-title/',
+    favicon: {
+      show: "YiYamimimi'blog",
+      hide: "YiYamimimi'blog"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

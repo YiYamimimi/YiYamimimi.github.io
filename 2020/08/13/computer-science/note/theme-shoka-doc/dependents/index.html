@@ -97,12 +97,12 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://img.zcool.cn/community/016ae85ab3c661a8012182077bfc23.png@1280w_1l_2o_100sh.png"></li>
-          <li class="item" data-background-image="https://uploadfile.bizhizu.cn/up/6f/b5/7a/6fb57a3572d34d9f3d5621dc006c3cfb.jpg"></li>
-          <li class="item" data-background-image="https://c-ssl.duitang.com/uploads/item/201712/29/20171229203934_M5FxG.jpeg"></li>
-          <li class="item" data-background-image="https://e0.ifengimg.com/04/2019/0620/8AA4914547A6AAE4E71D4B8C5297376F62AF059F_size237_w1464_h913.jpeg"></li>
           <li class="item" data-background-image="https://p.ssl.qhimg.com/d/dy_7b72110b83d8d2b15345be73fbf488ab."></li>
-          <li class="item" data-background-image="https://www.678gwy.com/wp-content/uploads/2022/01/1641477127-93efb2e5f75aef5.jpg"></li>
+          <li class="item" data-background-image="https://c-ssl.duitang.com/uploads/item/201712/29/20171229203934_M5FxG.jpeg"></li>
+          <li class="item" data-background-image="https://uploadfile.bizhizu.cn/up/6f/b5/7a/6fb57a3572d34d9f3d5621dc006c3cfb.jpg"></li>
+          <li class="item" data-background-image="https://e0.ifengimg.com/04/2019/0620/8AA4914547A6AAE4E71D4B8C5297376F62AF059F_size237_w1464_h913.jpeg"></li>
+          <li class="item" data-background-image="https://img.zcool.cn/community/016ae85ab3c661a8012182077bfc23.png@1280w_1l_2o_100sh.png"></li>
+          <li class="item" data-background-image="https://img.zcool.cn/community/013fa45c02a40ea80121ab5d00a3a3.jpg@2o.jpg"></li>
         </ul>
       </div>
     </header>
@@ -204,51 +204,54 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
 </tbody>
 </table>
 <blockquote>
-<p>没有正确安装以上插件的话，本主题会报错 or 无法正确显示 or 部分功能失效。<br>
+<p>没有正确安装以上插件的话，本主题会报错 or 无法正确显示 or 部分功能失效。<br />
  <code>hexo-renderer-multi-markdown-it</code>  请注意升级到最新版</p>
 </blockquote>
 <p>安装完以上插件后，修改站点配置文件，加入相关配置。</p>
-<h1 id="multi-markdown-it安装与配置"><a class="markdownIt-Anchor" href="#multi-markdown-it安装与配置">#</a> multi-markdown-it 安装与配置</h1>
-<h2 id="安装"><a class="markdownIt-Anchor" href="#安装">#</a> 安装</h2>
+<h1 id="multi-markdown-it安装与配置"><a class="anchor" href="#multi-markdown-it安装与配置">#</a> multi-markdown-it 安装与配置</h1>
+<h2 id="安装"><a class="anchor" href="#安装">#</a> 安装</h2>
 <ol>
 <li>
-<p>安装前，记得务必卸载掉默认的 <code>hexo-renderer-marked</code> ，以及别的 markdown 文件渲染器。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn remove hexo-renderer-marked</span><br></pre></td></tr></table></figure>
+<p>安装前，记得务必卸载掉默认的 <code>hexo-renderer-marked</code> ，以及别的 markdown 文件渲染器。<br />
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn remove hexo-renderer-marked</span><br></pre></td></tr></table></figure></p>
 </li>
 <li>
-<p>安装</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-multi-markdown-it --save</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn add hexo-renderer-multi-markdown-it</span><br></pre></td></tr></table></figure>
+<p>安装<br />
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-multi-markdown-it --save</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn add hexo-renderer-multi-markdown-it</span><br></pre></td></tr></table></figure></p>
 </li>
 <li>
-<p>如果安装缓慢，或者失败<br>
-如报错</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Failed to download Chromium r515411! Set <span class="string">&quot;PUPPETEER_SKIP_CHROMIUM_DOWNLOAD&quot;</span> <span class="built_in">env</span> variable to skip download.</span><br></pre></td></tr></table></figure>
-<p>因为有一步需要下载 puppeteer 里的 Chromium 内核，基于天朝内部网络现状，这一步能不能成功要靠科学和运气，所以为了避免安装失败，需要加上 <code>--ignore-scripts</code>  跳过 Chromium 内核的下载。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-multi-markdown-it --save --ignore-scripts</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn add hexo-renderer-multi-markdown-it --ignore-scripts</span><br></pre></td></tr></table></figure>
-<p>puppeteer 主要是用来渲染 mermaid 流程图，只要文章中不使用 mermaid 就没有任何问题，如果要使用 mermaid 建议还是想办法完全安装。</p>
+<p>如果安装缓慢，或者失败<br />
+如报错<br />
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Failed to download Chromium r515411! Set <span class="string">&quot;PUPPETEER_SKIP_CHROMIUM_DOWNLOAD&quot;</span> <span class="built_in">env</span> variable to skip download.</span><br></pre></td></tr></table></figure><br />
+ 因为有一步需要下载 puppeteer 里的 Chromium 内核，基于天朝内部网络现状，这一步能不能成功要靠科学和运气，所以为了避免安装失败，需要加上 <code>--ignore-scripts</code>  跳过 Chromium 内核的下载。<br />
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-multi-markdown-it --save --ignore-scripts</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">yarn add hexo-renderer-multi-markdown-it --ignore-scripts</span><br></pre></td></tr></table></figure><br />
+puppeteer 主要是用来渲染 mermaid 流程图，只要文章中不使用 mermaid 就没有任何问题，如果要使用 mermaid 建议还是想办法完全安装。</p>
 </li>
 </ol>
-<h2 id="配置"><a class="markdownIt-Anchor" href="#配置">#</a> 配置</h2>
+<h2 id="配置"><a class="anchor" href="#配置">#</a> 配置</h2>
 <ol>
-<li>加入 <code>markdown</code>  配置，用来渲染 md 文件</li>
+<li>
+<p>加入 <code>markdown</code>  配置，用来渲染 md 文件<br />
+ <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span> <span class="comment"># 渲染器设置</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">false</span> <span class="comment"># 过滤 HTML 标签</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">true</span> <span class="comment"># 使用 &#x27;/&#x27; 来闭合单标签 （比如 &lt;br /&gt;）。</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span> <span class="comment"># 转换段落里的 &#x27;\n&#x27; 到 &lt;br&gt;。</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span> <span class="comment"># 将类似 URL 的文本自动转换为链接。</span></span><br><span class="line">    <span class="attr">typographer:</span> </span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span> <span class="comment"># markdown-it插件设置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">markdown-it-toc-and-anchor</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span> <span class="comment"># 文章目录以及锚点应用的class名称，shoka主题必须设置成这样</span></span><br><span class="line">          <span class="attr">tocClassName:</span> <span class="string">&#x27;toc&#x27;</span></span><br><span class="line">          <span class="attr">anchorClassName:</span> <span class="string">&#x27;anchor&#x27;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">markdown-it-multimd-table</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span></span><br><span class="line">          <span class="attr">multiline:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">rowspan:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">headerless:</span> <span class="literal">true</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">./markdown-it-furigana</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span></span><br><span class="line">          <span class="attr">fallbackParens:</span> <span class="string">&quot;()&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">./markdown-it-spoiler</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span></span><br><span class="line">          <span class="attr">title:</span> <span class="string">&quot;你知道得太多了&quot;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>加入 <code>minify</code>  配置，压缩 css/js/html<br />
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">minify:</span></span><br><span class="line">  <span class="attr">html:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">exclude:</span> <span class="comment"># 排除hexo-feed用到的模板文件</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/json.ejs&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/atom.ejs&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/rss.ejs&#x27;</span></span><br><span class="line">  <span class="attr">css:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">exclude:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/*.min.css&#x27;</span></span><br><span class="line">  <span class="attr">js:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">mangle:</span></span><br><span class="line">      <span class="attr">toplevel:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">output:</span></span><br><span class="line">    <span class="attr">compress:</span></span><br><span class="line">    <span class="attr">exclude:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/*.min.js&#x27;</span></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>停用默认代码高亮功能，否则代码块的 mac 样式不能正常显示。<br />
+找到 <code>highlight</code>  和 <code>prismjs</code> ，把 <code>enable</code>  改成 <code>false</code> 。</p>
+</li>
 </ol>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span> <span class="comment"># 渲染器设置</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">false</span> <span class="comment"># 过滤 HTML 标签</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">true</span> <span class="comment"># 使用 &#x27;/&#x27; 来闭合单标签 （比如 &lt;br /&gt;）。</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span> <span class="comment"># 转换段落里的 &#x27;\n&#x27; 到 &lt;br&gt;。</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span> <span class="comment"># 将类似 URL 的文本自动转换为链接。</span></span><br><span class="line">    <span class="attr">typographer:</span> </span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span> <span class="comment"># markdown-it插件设置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">markdown-it-toc-and-anchor</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span> <span class="comment"># 文章目录以及锚点应用的class名称，shoka主题必须设置成这样</span></span><br><span class="line">          <span class="attr">tocClassName:</span> <span class="string">&#x27;toc&#x27;</span></span><br><span class="line">          <span class="attr">anchorClassName:</span> <span class="string">&#x27;anchor&#x27;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">markdown-it-multimd-table</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span></span><br><span class="line">          <span class="attr">multiline:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">rowspan:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">headerless:</span> <span class="literal">true</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">./markdown-it-furigana</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span></span><br><span class="line">          <span class="attr">fallbackParens:</span> <span class="string">&quot;()&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">plugin:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">./markdown-it-spoiler</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">options:</span></span><br><span class="line">          <span class="attr">title:</span> <span class="string">&quot;你知道得太多了&quot;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>加入 <code>minify</code>  配置，压缩 css/js/html</li>
-</ol>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">minify:</span></span><br><span class="line">  <span class="attr">html:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">exclude:</span> <span class="comment"># 排除hexo-feed用到的模板文件</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/json.ejs&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/atom.ejs&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/rss.ejs&#x27;</span></span><br><span class="line">  <span class="attr">css:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">exclude:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/*.min.css&#x27;</span></span><br><span class="line">  <span class="attr">js:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">mangle:</span></span><br><span class="line">      <span class="attr">toplevel:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">output:</span></span><br><span class="line">    <span class="attr">compress:</span></span><br><span class="line">    <span class="attr">exclude:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/*.min.js&#x27;</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>停用默认代码高亮功能，否则代码块的 mac 样式不能正常显示。<br>
-找到 <code>highlight</code>  和 <code>prismjs</code> ，把 <code>enable</code>  改成 <code>false</code> 。</li>
-</ol>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h1 id="autoprefixer配置建议"><a class="markdownIt-Anchor" href="#autoprefixer配置建议">#</a> autoprefixer 配置建议</h1>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">autoprefixer:</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;*.min.css&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="autoprefixer配置建议"><a class="anchor" href="#autoprefixer配置建议">#</a> autoprefixer 配置建议</h1>
+<p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">autoprefixer:</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;*.min.css&#x27;</span></span><br></pre></td></tr></table></figure></p>
 <p>缺少这个插件，首页卡片翻转效果在部分浏览器中无法正确显示。</p>
-<h1 id="algolia配置建议"><a class="markdownIt-Anchor" href="#algolia配置建议">#</a> algolia 配置建议</h1>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">algolia:</span></span><br><span class="line">  <span class="attr">appId:</span> <span class="comment">#Your appId</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="comment">#Your apiKey</span></span><br><span class="line">  <span class="attr">adminApiKey:</span> <span class="comment">#Your adminApiKey</span></span><br><span class="line">  <span class="attr">chunkSize:</span> <span class="number">5000</span></span><br><span class="line">  <span class="attr">indexName:</span> <span class="comment">#&quot;shoka&quot;</span></span><br><span class="line">  <span class="attr">fields:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">title</span> <span class="comment">#必须配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">path</span> <span class="comment">#必须配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">categories</span> <span class="comment">#推荐配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">content:strip:truncate,0,2000</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">gallery</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">photos</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tags</span></span><br></pre></td></tr></table></figure>
-<h1 id="feed配置建议"><a class="markdownIt-Anchor" href="#feed配置建议">#</a> feed 配置建议</h1>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">keywords:</span> <span class="comment">#站点关键词，用“,”分隔</span></span><br><span class="line"></span><br><span class="line"><span class="attr">feed:</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">order_by:</span> <span class="string">&quot;-date&quot;</span></span><br><span class="line">    <span class="attr">tag_dir:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">category_dir:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">rss:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">template:</span> <span class="string">&quot;themes/shoka/layout/_alternate/rss.ejs&quot;</span></span><br><span class="line">        <span class="attr">output:</span> <span class="string">&quot;rss.xml&quot;</span></span><br><span class="line">    <span class="attr">atom:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">template:</span> <span class="string">&quot;themes/shoka/layout/_alternate/atom.ejs&quot;</span></span><br><span class="line">        <span class="attr">output:</span> <span class="string">&quot;atom.xml&quot;</span></span><br><span class="line">    <span class="attr">jsonFeed:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">template:</span> <span class="string">&quot;themes/shoka/layout/_alternate/json.ejs&quot;</span></span><br><span class="line">        <span class="attr">output:</span> <span class="string">&quot;feed.json&quot;</span></span><br></pre></td></tr></table></figure>
+<h1 id="algolia配置建议"><a class="anchor" href="#algolia配置建议">#</a> algolia 配置建议</h1>
+<p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">algolia:</span></span><br><span class="line">  <span class="attr">appId:</span> <span class="comment">#Your appId</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="comment">#Your apiKey</span></span><br><span class="line">  <span class="attr">adminApiKey:</span> <span class="comment">#Your adminApiKey</span></span><br><span class="line">  <span class="attr">chunkSize:</span> <span class="number">5000</span></span><br><span class="line">  <span class="attr">indexName:</span> <span class="comment">#&quot;shoka&quot;</span></span><br><span class="line">  <span class="attr">fields:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">title</span> <span class="comment">#必须配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">path</span> <span class="comment">#必须配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">categories</span> <span class="comment">#推荐配置</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">content:strip:truncate,0,2000</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">gallery</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">photos</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tags</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="feed配置建议"><a class="anchor" href="#feed配置建议">#</a> feed 配置建议</h1>
+<p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">keywords:</span> <span class="comment">#站点关键词，用“,”分隔</span></span><br><span class="line"></span><br><span class="line"><span class="attr">feed:</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">order_by:</span> <span class="string">&quot;-date&quot;</span></span><br><span class="line">    <span class="attr">tag_dir:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">category_dir:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">rss:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">template:</span> <span class="string">&quot;themes/shoka/layout/_alternate/rss.ejs&quot;</span></span><br><span class="line">        <span class="attr">output:</span> <span class="string">&quot;rss.xml&quot;</span></span><br><span class="line">    <span class="attr">atom:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">template:</span> <span class="string">&quot;themes/shoka/layout/_alternate/atom.ejs&quot;</span></span><br><span class="line">        <span class="attr">output:</span> <span class="string">&quot;atom.xml&quot;</span></span><br><span class="line">    <span class="attr">jsonFeed:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">template:</span> <span class="string">&quot;themes/shoka/layout/_alternate/json.ejs&quot;</span></span><br><span class="line">        <span class="attr">output:</span> <span class="string">&quot;feed.json&quot;</span></span><br></pre></td></tr></table></figure></p>
+
       <div class="tags">
           <a href="/tags/Hexo/" rel="tag"><i class="ic i-tag"></i> Hexo</a>
           <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"><i class="ic i-tag"></i> 教程</a>
@@ -265,29 +268,6 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
     <span class="text">更新于</span>
     <time title="修改时间：2023-12-30 15:58:58" itemprop="dateModified" datetime="2023-12-30T15:58:58+08:00">2023-12-30</time>
   </span>
-</div>
-
-      
-<div class="reward">
-  <button><i class="ic i-heartbeat"></i> 赞赏</button>
-  <p>请我喝[茶]~(￣▽￣)~*</p>
-  <div id="qr">
-      
-      <div>
-        <img data-src="/images/wechatpay.png" alt="YiYamimimi 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div>
-        <img data-src="/images/alipay.png" alt="YiYamimimi 支付宝">
-        <p>支付宝</p>
-      </div>
-      
-      <div>
-        <img data-src="/images/paypal.png" alt="YiYamimimi 贝宝">
-        <p>贝宝</p>
-      </div>
-  </div>
 </div>
 
       
@@ -318,7 +298,7 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
     <div class="item left">
       
 
-  <a href="/2020/08/13/computer-science/note/theme-shoka-doc/theme-shoka-doc/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2017&#x2F;1117&#x2F;20171117100417411827.jpg" title="Hexo主题Shoka &amp; multi-markdown-it渲染器使用说明">
+  <a href="/2020/08/13/computer-science/note/theme-shoka-doc/theme-shoka-doc/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.678gwy.com&#x2F;wp-content&#x2F;uploads&#x2F;2022&#x2F;01&#x2F;1641477127-93efb2e5f75aef5.jpg" title="Hexo主题Shoka &amp; multi-markdown-it渲染器使用说明">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> Theme Shoka Documentation</span>
   <h3>Hexo主题Shoka & multi-markdown-it渲染器使用说明</h3>
@@ -328,7 +308,7 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
     <div class="item right">
       
 
-  <a href="/2020/08/13/computer-science/note/theme-shoka-doc/config/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;c-ssl.duitang.com&#x2F;uploads&#x2F;item&#x2F;201712&#x2F;29&#x2F;20171229203934_M5FxG.jpeg" title="Step.2 基本配置">
+  <a href="/2020/08/13/computer-science/note/theme-shoka-doc/config/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;img9.doubanio.com&#x2F;img&#x2F;trailer&#x2F;medium&#x2F;2218618162.jpg?" title="Step.2 基本配置">
   <span class="type">下一篇</span>
   <span class="category"><i class="ic i-flag"></i> Theme Shoka Documentation</span>
   <h3>Step.2 基本配置</h3>
@@ -460,15 +440,6 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
   <li class="item">
     
 <div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
@@ -483,6 +454,16 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/front-end/" title="分类于 前端">前端</a>
+</div>
+
+    <span><a href="/2023/01/02/front-end/no-title/" title="Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）">Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
@@ -490,16 +471,7 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
 </div>
 
-    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/config/" title="Step.2 基本配置">Step.2 基本配置</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2019/07/25/computer-science/note/theme-shoka-doc/code-highlight/" title="Code Highlight Style test">Code Highlight Style test</a></span>
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/theme-shoka-doc/" title="Hexo主题Shoka &amp; multi-markdown-it渲染器使用说明">Hexo主题Shoka & multi-markdown-it渲染器使用说明</a></span>
   </li>
 
       
@@ -539,6 +511,38 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
   <li class="item">
     
 <div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/config/" title="Step.2 基本配置">Step.2 基本配置</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2019/07/25/computer-science/note/theme-shoka-doc/code-highlight/" title="Code Highlight Style test">Code Highlight Style test</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
@@ -547,30 +551,6 @@ YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这�
 </div>
 
     <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/dependents/" title="Step.1 依赖插件">Step.1 依赖插件</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/front-end/" title="分类于 前端">前端</a>
-</div>
-
-    <span><a href="/2020/04/12/front-end/no-title/" title="第1周 计算">第1周 计算</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
-</div>
-
-    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/theme-shoka-doc/" title="Hexo主题Shoka &amp; multi-markdown-it渲染器使用说明">Hexo主题Shoka & multi-markdown-it渲染器使用说明</a></span>
   </li>
 
   </ul>

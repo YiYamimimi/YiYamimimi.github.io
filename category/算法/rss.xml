@@ -16,7 +16,7 @@
             <title>第1周 计算</title>
             <link>http://example.com/2020/04/12/algorithm/no-title/</link>
             <pubDate>Sun, 12 Apr 2020 20:46:25 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;This post doesn’t have a title. Make sure it’s accessible.&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;This post doesn&#39;t have a title. Make sure it&#39;s accessible.&lt;/p&gt;
  ]]></description>
         </item>
     </channel>

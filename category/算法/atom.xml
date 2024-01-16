@@ -12,7 +12,7 @@
         <id>http://example.com/2020/04/12/algorithm/no-title/</id>
         <title>第1周 计算</title>
         <link rel="alternate" href="http://example.com/2020/04/12/algorithm/no-title/"/>
-        <content type="html">&lt;p&gt;This post doesn’t have a title. Make sure it’s accessible.&lt;/p&gt;
+        <content type="html">&lt;p&gt;This post doesn&#39;t have a title. Make sure it&#39;s accessible.&lt;/p&gt;
 </content>
         <updated>2020-04-12T12:46:25.000Z</updated>
     </entry>
