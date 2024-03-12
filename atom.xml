@@ -3,11 +3,216 @@
     <id>http://example.com</id>
     <title>每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！</title>
     <link href="http://example.com" />
-    <updated>2023-12-31T10:17:04.575Z</updated>
+    <updated>2024-03-12T01:46:25.000Z</updated>
+    <category term="部署上线" />
     <category term="Hexo" />
     <category term="教程" />
     <category term="Foo" />
     <category term="Bar" />
+    <entry>
+        <id>http://example.com/2024/03/12/front-end/deployment-cloudserver/</id>
+        <title>如何将前后分离的项目部署到云服务器</title>
+        <link rel="alternate" href="http://example.com/2024/03/12/front-end/deployment-cloudserver/"/>
+        <content type="html">&lt;h1 id=&#34;一-购买服务器腾讯云-阿里云&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-购买服务器腾讯云-阿里云&#34;&gt;#&lt;/a&gt; 一、购买服务器（腾讯云、阿里云……）&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;云服务器操作系统分为 Windows 和 Linux 类，Linux 系统相对于 win 占用更少系统资源，一般选用 Linux&lt;/p&gt;
+&lt;p&gt;阿里云 Linux 镜像可选 Aliyun Linux、CentOS、Ubuntu、Debian、SUSE Linux、OpenSUSE、CoreOS 和 FreeBSD。&lt;/p&gt;
+&lt;p&gt;Aliyun Linux 是阿里云原生 Linux 操作系统，针对 ECS 做了大量深度优化，完全兼容 CentOS 生态和操作方式；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果是 Web 网站应用，免费好用首选 CentOS；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ubuntu 基于 Debian，新手更容易上手，时长占有率也高。&lt;br /&gt;
+综上，阿里云 ECS 云服务器 Linux 镜像&lt;strong&gt;推荐选择 Aliyun Linux、CenOS 或 Ubuntu&lt;/strong&gt; 都可以，根据用户实际熟悉程度及应用选择&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里选用：CentOS 7.2 的 Linux 系统&lt;/p&gt;
+&lt;p&gt;前端开发工具：WebStorm vue+element&lt;br /&gt;
+ 后端开发工具：IDEA spring boot&lt;br /&gt;
+ 部署环境：阿里云 Linux &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1DZW50T1M3JmFtcDtzcG09MTAwMS4yMTAxLjMwMDEuNzAyMA==&#34;&gt;CentOS7&lt;/span&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/b4X3vszyhOUMKpd.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/7c0248fb88ab4ba4840447dd1f3536d2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;二-下载-x-shell和xftp&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-下载-x-shell和xftp&#34;&gt;#&lt;/a&gt; 二、下载 X-shell 和 Xftp&lt;/h1&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cueHNoZWxsLmNvbS96aC9mcmVlLWZvci1ob21lLXNjaG9vbC8=&#34;&gt;家庭 / 学校免费 - NetSarang Website&lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每次连接服务器都要一步步连挺麻烦的 ∴借助一个第三方的工具进行远程与服务器连接&lt;/p&gt;
+&lt;p&gt;管理云服务器的软件：XShell，Putty，SecureCRT 等&lt;/p&gt;
+&lt;p&gt;使用的是 Xshell 和 Xftp。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cubmV0c2FyYW5nLmNvbS9lbi9mcmVlLWZvci1ob21lLXNjaG9vbC8=&#34;&gt;Xshell&lt;/span&gt; 提供了一个终端界面用于 Shell 操作，使用 SSH 协议连接到远程服务器&lt;/p&gt;
+&lt;p&gt;Xftp 支持 SSH 和 SFTP 协议，主要用于文件传输和管理&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/GlhV3Jaxqt8ycHz.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/e821af5770264b91af40b11dc13a6000.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/Sfm5Pr2OIpYyUqX.png&#34; alt=&#34;输入图片说明&#34; /&gt;​&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;三-部署前准备&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-部署前准备&#34;&gt;#&lt;/a&gt; 三、部署前准备&lt;/h1&gt;
+&lt;h3 id=&#34;1-打包前端文件dis&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-打包前端文件dis&#34;&gt;#&lt;/a&gt; 1、打包前端文件 dis&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;修改 baseUrl：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;新建文件.env.development（本地配置）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;VUE_APP_BASEURL=&#39;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdDo5MDkw&#34;&gt;http://localhost:9090&lt;/span&gt;&#39;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;新建文件..env.production（开发配置）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;VUE_APP_BASEURL=&#39;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS16ZnJ1MWdmcjZiejYzaTo5MDkw&#34;&gt;http:// 服务器地址：9090&lt;/span&gt;&#39;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;main.js 设置全局变量 $baseUrl&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Vue.prototype.$baseUrl=process.env.VUE_APP_BASEURL&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&#34;打包npm-run-build&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#打包npm-run-build&#34;&gt;#&lt;/a&gt; 打包：npm run build&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;vue-cli-service 默认会读取 env.development 文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/hKqx1lCOISiRuUp.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/5673f9c795864f8e9fc104f2b842d0b8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-打包后端文件jar&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-打包后端文件jar&#34;&gt;#&lt;/a&gt; &lt;strong&gt;2、打包后端文件 jar&lt;/strong&gt;&lt;/h3&gt;
+&lt;h6 id=&#34;打包-mvn-clean-package-执行打包后的jar&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#打包-mvn-clean-package-执行打包后的jar&#34;&gt;#&lt;/a&gt; 打包 ：mvn clean package &lt;strong&gt;执行打包后的 jar&lt;/strong&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/SlLI9BWxyMza6nh.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/b05750815cbe42889cfef887fc6321e6.png&#34; alt=&#34;&#34; /&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/8kPJF9cO3r12QHy.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/eaf87cd4a440487295aba5f15b858c2c.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-打包后可以先尝试一下运行打包的文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-打包后可以先尝试一下运行打包的文件&#34;&gt;#&lt;/a&gt; 3、打包后可以先尝试一下运行打包的文件&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;用 serve 执行前端打包的 dis&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/6wNPn5IxCcOLrjV.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/2283f68ab5254ebab6839338117ec459.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用 java -jar 执行后端打包的 jar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/o4HRTYMKUBquyPt.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/bd0e1e2340c745b4a5e211f20b13e2d4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;四-部署云服务器的环境并将打包的前后端文件上传上去&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#四-部署云服务器的环境并将打包的前后端文件上传上去&#34;&gt;#&lt;/a&gt; 四、 部署云服务器的环境并将打包的前后端文件上传上去&lt;/h1&gt;
+&lt;h3 id=&#34;1-使用上面下载的x-shell和xftp安装软件nginx-jdk-mysql&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-使用上面下载的x-shell和xftp安装软件nginx-jdk-mysql&#34;&gt;#&lt;/a&gt; 1、使用上面下载的 X-shell 和 Xftp 安装软件：&lt;strong&gt;nginx、jdk、mysql&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/hOYrmWekdV1L5Q6.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/9516a25e3deb4da9bd8b0620639e1ca3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;安装jdk18&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装jdk18&#34;&gt;#&lt;/a&gt; 安装 jdk1.8&lt;/h4&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 要解压的目录			&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tar -zxvf /tmp/jdk-8u371-linux-x64.tar.gz -C /usr/local/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mv /usr/local/jdk1.8.0_371 /usr/local/java&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;vi /etc/profile&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 进到profile文件里进行编辑，再最后一行追加内容&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;export JAVA_HOME=/usr/local/java&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;export PATH=$JAVA_HOME/bin:$PATH&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#执行&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;source /etc/profile&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 验证&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;java -version&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/MZFnhrScHQpY6ue.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/87952263eef249dda2a602ea313ef8c6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;安装nginx&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装nginx&#34;&gt;#&lt;/a&gt; 安装 nginx&lt;/h4&gt;
+&lt;p&gt;a. 安装库文件&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;#安装 gcc&lt;br /&gt;
+yum install gcc-c++&lt;/p&gt;
+&lt;p&gt;#安装 PCRE pcre-devel&lt;br /&gt;
+yum install -y pcre pcre-devel&lt;/p&gt;
+&lt;p&gt;#安装 zlib&lt;br /&gt;
+yum install -y zlib zlib-devel&lt;/p&gt;
+&lt;p&gt;#安装 Open SSL&lt;br /&gt;
+yum install -y openssl openssl-devel&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;b. 解压、编译 nginx 并安装&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mkdir /usr/local/nginx&lt;br /&gt;
+tar -zxvf /tmp/nginx-1.24.0.tar.gz -C /usr/local/nginx&lt;/p&gt;
+&lt;p&gt;cd /usr/local/nginx/nginx-1.24.0&lt;br /&gt;
+# 编译安装&lt;br /&gt;
+./configure --with-http_stub_status_module --with-http_ssl_module&lt;br /&gt;
+make &amp;amp;&amp;amp; make install&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;c.nginx 命令&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cd /usr/local/nginx/sbin&lt;br /&gt;
+./nginx # 启动&lt;/p&gt;
+&lt;p&gt;ps -ef | grep nginx # 查看&lt;br /&gt;
+./nginx -s stop # 停止&lt;br /&gt;
+./nginx -s reload # 重启&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ps -ef | grep nginx&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/sfkmwhqGUFjQYbL.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/ecb7a50970c3425087df3fd9b4692157.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;d.nginx 配置&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/1S4VmBLPkclzpYA.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/432e6bb1b60444e5b12382fbc7c1bd98.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;server &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    listen       80;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    server_name  localhost;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    #charset koi8-r;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    #access_log  logs/host.access.log  main;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    location / &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        root   /home/server/honey2024/vue/dist;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        index  index.html index.htm;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        try_files $uri $uri/ /index.html;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==&#34; alt=&#34;&#34; title=&#34;点击并拖拽以移动&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;root 填写前端打包的文件 dist 位置；&lt;/p&gt;
+&lt;p&gt;root /home/server/honey2024/vue/dist; // 访问你打包的 vue 文件 dis&lt;/p&gt;
+&lt;p&gt;try_files $uri $uri//index.html; // 因为用了 vue-router&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;e. 执行命令重启：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;d /usr/local/nginx/sbin&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;./nginx -s reload&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;安装mysql&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装mysql&#34;&gt;#&lt;/a&gt; 安装 mysql&lt;/h4&gt;
+&lt;p&gt;linux 系统会自动携带一个数据库，我们需要把它给卸载掉&lt;/p&gt;
+&lt;p&gt;通过以下代码可以查看 mariadb 并卸载&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;rpm -qa | grep mariadb&lt;br /&gt;
+yum remove -y mariadb-connector-c-3.1.11-2.oc8.1.x86_64&lt;br /&gt;
+yum remove -y mariadb-connector-c-config-3.1.11-2.oc8.1.noarch&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下载 mysql 并 上传到 /tmp 目录&lt;/p&gt;
+&lt;p&gt;安装 mysql 命令：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;mkdir /data/mysql&lt;br /&gt;
+tar -zxvf /tmp/mysql-5.7.42-el7-x86_64.tar.gz -C /usr/local&lt;br /&gt;
+mv /usr/local/mysql-5.7.42-el7-x86_64 /usr/local/mysql&lt;/p&gt;
+&lt;p&gt;#添加用户组&lt;br /&gt;
+ groupadd mysql&lt;br /&gt;
+useradd -r -g mysql mysql&lt;br /&gt;
+chown -R mysql.mysql /usr/local/mysql&lt;br /&gt;
+chown -R mysql.mysql /data/mysql&lt;/p&gt;
+&lt;p&gt;cd /usr/local/mysql&lt;br /&gt;
+/usr/local/mysql/bin/mysqld --user=mysql --basedir=/usr/local/mysql/ --datadir=/data/mysql --initialize&lt;/p&gt;
+&lt;p&gt;#将 mysql 加入到服务中&lt;br /&gt;
+ cp /usr/local/mysql/support-files/mysql.server/etc/init.d/mysql&lt;/p&gt;
+&lt;p&gt;#mysql 快捷方式&lt;br /&gt;
+ ln -s /usr/local/mysql/bin/mysql/usr/bin&lt;br /&gt;
+ln -s /usr/lib64/libtinfo.so.6.1 /usr/lib64/libtinfo.so.5&lt;br /&gt;
+ln -s /usr/lib64/libncurses.so.6.1 /usr/lib64/libncurses.so.5&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/wtORhejnGiMpbXd.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/a07f434f64b441be994253d38721489b.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记住上面的临时密码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;配置 mysql 配置文件 my.cnf&lt;/p&gt;
+&lt;p&gt;vi /etc/my.cnf&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[mysqld]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;datadir=/data/mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;basedir=/usr/local/mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;socket=/tmp/mysql.sock&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;user=mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;port=3306&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;character-set-server=utf8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 取消密码验证&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# skip-grant-tables&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# # Disabling symbolic-links is recommended to prevent assorted security risks&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;symbolic-links=0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[mysqld_safe]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;log-error=/var/log/mysqld.log&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pid-file=/var/run/mysqld/mysqld.pid&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==&#34; alt=&#34;&#34; title=&#34;点击并拖拽以移动&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;启动 mysql： &lt;strong&gt;service mysql start&lt;/strong&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/GbtDk2QeIML9Pp4.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/6f2eb3caa5ce4b84ac946983fff4557a.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开机启动: &lt;strong&gt;chkconfig mysql on&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;登录 mysql： &lt;strong&gt;mysql -uroot -p&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;输入临时密码进入 mysql 修改密码并设置权限：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;修改密码并设置权限：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SET PASSWORD = PASSWORD(&#39;1234&#39;);&lt;/p&gt;
+&lt;p&gt;use mysql;&lt;br /&gt;
+update user set host =&#39;%&#39;where user =&#39;root&#39; and host =&#39;localhost&#39;;&lt;br /&gt;
+flush privileges;&lt;br /&gt;
+exit;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用 SQLyogt 连接 mysql&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/5p8IozrvsNikdVg.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/2ab6a2c5a1454a8e9139d0be93d397c4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;设置服务器防火墙：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/Aytrz74mKqWZjli.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/a3aba07361c9736e21cc4bbc1d5c304a.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;新建数据库并将本地数据库导入远程的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/8hnF9ESTYcmKHwO.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/a668d0217a7e44a3b0690c51698afacc.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-部署前端文件dist&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-部署前端文件dist&#34;&gt;#&lt;/a&gt; 2、部署前端文件 dist&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用 X-shell 和 Xftp 创建文件夹：mkdir -p /home/server/honey2024&lt;/p&gt;
+&lt;p&gt;上传 dist 文件夹到 /home/server/honey2024/vue&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/G81AVIKaUtLr2Cc.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/22482fc05efe48ff9e4a4b2b1ea872d2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;3-部署后端文件jar&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-部署后端文件jar&#34;&gt;#&lt;/a&gt; 3、部署后端文件 jar&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上传 jar 包到服务器 /home/server/honey2024/java 目录&lt;/p&gt;
+&lt;p&gt;设置 application.yml 覆盖&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/Qo85wHYhsd4GfOT.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/158e7bc99ce44623950bfbe4d7ef7506.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;添加 启动和停止脚本&lt;/p&gt;
+&lt;p&gt;cd /home/server/honey2024/java&lt;/p&gt;
+&lt;p&gt;vi &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3N0YXJ0LnNo&#34;&gt;start.sh&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;NAME=springboot-0.0.1-SNAPSHOT.jar&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nohup java -jar $NAME &amp;gt; server.log 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo &amp;#x27;start success&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==&#34; alt=&#34;&#34; title=&#34;点击并拖拽以移动&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;vi &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3N0b3Auc2g=&#34;&gt;stop.sh&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;PORT=8082&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pid=`netstat -tnlp | grep $PORT | grep -v grep | awk &amp;#x27;&amp;#123;print $7&amp;#125;&amp;#x27; | awk -F/ &amp;#x27;&amp;#123;print $1&amp;#125;&amp;#x27;`&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;if [ $&amp;#123;pid&amp;#125; ]; then&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    kill -9 $pid&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    echo &amp;quot;kill $PORT&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;else&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    echo &amp;#x27;stop sucess!&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fi&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==&#34; alt=&#34;&#34; title=&#34;点击并拖拽以移动&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;赋权 chmod +x *&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/eyC8A4cjFItzrqM.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/af71c27e94d0b3ed81d4ade71b0a0963.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;去除脚本文件里的特殊符号（可选）&lt;/p&gt;
+&lt;p&gt;sed -i &#39;s/\r//&#39; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3N0YXJ0LnNo&#34;&gt;start.sh&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;sed -i &#39;s/\r//&#39; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3N0b3Auc2g=&#34;&gt;stop.sh&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;完成后的目录文件：&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/Jxbpt64o5NDvzS7.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/82a26e54d3f33639b707cf8b01b26837.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4-启动程序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-启动程序&#34;&gt;#&lt;/a&gt; 4、启动程序：&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cd /home/server/honey2024/java&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;./start.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==&#34; alt=&#34;&#34; title=&#34;点击并拖拽以移动&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;实时查看日志：&lt;strong&gt;tail -100f server.log&lt;/strong&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/GQfnkVmty4PNUc3.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/ee52847a4f204a8b98b5daab7e48318d.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;设置防火墙端口 9090&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://s2.loli.net/2024/03/12/PiQwpEYj7R4ODVA.png&#34; alt=&#34;输入图片说明&#34; /&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/d8247649bb27d50bb809b9f9e0173f16.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;之后，访问公网 ip 可以预览上线项目了&lt;/p&gt;
+&lt;p&gt;题外话：可以&lt;strong&gt;在云服务器上安装宝塔面板来管理项目&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+</content>
+        <category term="部署上线" />
+        <updated>2024-03-12T01:46:25.000Z</updated>
+    </entry>
     <entry>
         <id>http://example.com/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/</id>
         <title>Hello World</title>

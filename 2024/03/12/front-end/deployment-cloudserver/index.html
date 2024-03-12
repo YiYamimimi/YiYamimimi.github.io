@@ -1,0 +1,699 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="部署上线" />
+
+
+<link rel="canonical" href="http://example.com/2024/03/12/front-end/deployment-cloudserver/">
+
+
+
+  <title>
+如何将前后分离的项目部署到云服务器 - 前端 |
+YiYamimimi = 每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！ = Welcome to my blog</title>
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class='container'>
+  <div class='loader'>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--text'></div>
+  </div>
+</div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">如何将前后分离的项目部署到云服务器
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2024-03-12 09:46:25">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-03-12T09:46:25+08:00">2024-03-12</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">YiYamimimi</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.678gwy.com/wp-content/uploads/2022/01/1641477127-93efb2e5f75aef5.jpg"></li>
+          <li class="item" data-background-image="http://www.cgstheater.cn/repository/image/410fe1cd-eb26-41ed-9238-55e0ae3ed91b.jpg_1180xa.jpg"></li>
+          <li class="item" data-background-image="https://cdn.lizhi.fm/audio_cover/2016/07/04/29708077274669319.jpg"></li>
+          <li class="item" data-background-image="https://e0.ifengimg.com/04/2019/0620/8AA4914547A6AAE4E71D4B8C5297376F62AF059F_size237_w1464_h913.jpeg"></li>
+          <li class="item" data-background-image="https://uploadfile.bizhizu.cn/up/6f/b5/7a/6fb57a3572d34d9f3d5621dc006c3cfb.jpg"></li>
+          <li class="item" data-background-image="https://img9.doubanio.com/img/trailer/medium/2218618162.jpg?"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/front-end/" itemprop="item" rel="index" title="分类于 前端"><span itemprop="name">前端</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/12/front-end/deployment-cloudserver/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="YiYamimimi">
+    <meta itemprop="description" content="Welcome to my blog, ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="一-购买服务器腾讯云-阿里云"><a class="anchor" href="#一-购买服务器腾讯云-阿里云">#</a> 一、购买服务器（腾讯云、阿里云……）</h1>
+<blockquote>
+<p>云服务器操作系统分为 Windows 和 Linux 类，Linux 系统相对于 win 占用更少系统资源，一般选用 Linux</p>
+<p>阿里云 Linux 镜像可选 Aliyun Linux、CentOS、Ubuntu、Debian、SUSE Linux、OpenSUSE、CoreOS 和 FreeBSD。</p>
+<p>Aliyun Linux 是阿里云原生 Linux 操作系统，针对 ECS 做了大量深度优化，完全兼容 CentOS 生态和操作方式；</p>
+<p><strong>如果是 Web 网站应用，免费好用首选 CentOS；</strong></p>
+<p>Ubuntu 基于 Debian，新手更容易上手，时长占有率也高。<br />
+综上，阿里云 ECS 云服务器 Linux 镜像<strong>推荐选择 Aliyun Linux、CenOS 或 Ubuntu</strong> 都可以，根据用户实际熟悉程度及应用选择</p>
+</blockquote>
+<p>这里选用：CentOS 7.2 的 Linux 系统</p>
+<p>前端开发工具：WebStorm vue+element<br />
+ 后端开发工具：IDEA spring boot<br />
+ 部署环境：阿里云 Linux <span class="exturl" data-url="aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1DZW50T1M3JmFtcDtzcG09MTAwMS4yMTAxLjMwMDEuNzAyMA==">CentOS7</span><br />
+<img data-src="https://s2.loli.net/2024/03/12/b4X3vszyhOUMKpd.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/7c0248fb88ab4ba4840447dd1f3536d2.png" alt="" /></p>
+<h1 id="二-下载-x-shell和xftp"><a class="anchor" href="#二-下载-x-shell和xftp">#</a> 二、下载 X-shell 和 Xftp</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cueHNoZWxsLmNvbS96aC9mcmVlLWZvci1ob21lLXNjaG9vbC8=">家庭 / 学校免费 - NetSarang Website</span></p>
+<blockquote>
+<p>每次连接服务器都要一步步连挺麻烦的 ∴借助一个第三方的工具进行远程与服务器连接</p>
+<p>管理云服务器的软件：XShell，Putty，SecureCRT 等</p>
+<p>使用的是 Xshell 和 Xftp。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubmV0c2FyYW5nLmNvbS9lbi9mcmVlLWZvci1ob21lLXNjaG9vbC8=">Xshell</span> 提供了一个终端界面用于 Shell 操作，使用 SSH 协议连接到远程服务器</p>
+<p>Xftp 支持 SSH 和 SFTP 协议，主要用于文件传输和管理<br />
+<img data-src="https://s2.loli.net/2024/03/12/GlhV3Jaxqt8ycHz.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/e821af5770264b91af40b11dc13a6000.png" alt="" /><br />
+<img data-src="https://s2.loli.net/2024/03/12/Sfm5Pr2OIpYyUqX.png" alt="输入图片说明" />​</p>
+</blockquote>
+<h1 id="三-部署前准备"><a class="anchor" href="#三-部署前准备">#</a> 三、部署前准备</h1>
+<h3 id="1-打包前端文件dis"><a class="anchor" href="#1-打包前端文件dis">#</a> 1、打包前端文件 dis</h3>
+<blockquote>
+<p>修改 baseUrl：</p>
+<p><strong>新建文件.env.development（本地配置）</strong></p>
+<p>VUE_APP_BASEURL='<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo5MDkw">http://localhost:9090</span>'</p>
+<p><strong>新建文件..env.production（开发配置）</strong></p>
+<p>VUE_APP_BASEURL='<span class="exturl" data-url="aHR0cDovL3huLS16ZnJ1MWdmcjZiejYzaTo5MDkw">http:// 服务器地址：9090</span>'</p>
+<p><strong>main.js 设置全局变量 $baseUrl</strong></p>
+<p>Vue.prototype.$baseUrl=process.env.VUE_APP_BASEURL</p>
+</blockquote>
+<h6 id="打包npm-run-build"><a class="anchor" href="#打包npm-run-build">#</a> 打包：npm run build</h6>
+<p><strong>vue-cli-service 默认会读取 env.development 文件</strong></p>
+<p><img data-src="https://s2.loli.net/2024/03/12/hKqx1lCOISiRuUp.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/5673f9c795864f8e9fc104f2b842d0b8.png" alt="" /></p>
+<h3 id="2-打包后端文件jar"><a class="anchor" href="#2-打包后端文件jar">#</a> <strong>2、打包后端文件 jar</strong></h3>
+<h6 id="打包-mvn-clean-package-执行打包后的jar"><a class="anchor" href="#打包-mvn-clean-package-执行打包后的jar">#</a> 打包 ：mvn clean package <strong>执行打包后的 jar</strong></h6>
+<p><img data-src="https://s2.loli.net/2024/03/12/SlLI9BWxyMza6nh.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/b05750815cbe42889cfef887fc6321e6.png" alt="" /><img data-src="https://s2.loli.net/2024/03/12/8kPJF9cO3r12QHy.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/eaf87cd4a440487295aba5f15b858c2c.png" alt="" /></p>
+<h3 id="3-打包后可以先尝试一下运行打包的文件"><a class="anchor" href="#3-打包后可以先尝试一下运行打包的文件">#</a> 3、打包后可以先尝试一下运行打包的文件</h3>
+<p><strong>用 serve 执行前端打包的 dis</strong></p>
+<p><img data-src="https://s2.loli.net/2024/03/12/6wNPn5IxCcOLrjV.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/2283f68ab5254ebab6839338117ec459.png" alt="" /></p>
+<p><strong>用 java -jar 执行后端打包的 jar</strong></p>
+<p><img data-src="https://s2.loli.net/2024/03/12/o4HRTYMKUBquyPt.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/bd0e1e2340c745b4a5e211f20b13e2d4.png" alt="" /></p>
+<h1 id="四-部署云服务器的环境并将打包的前后端文件上传上去"><a class="anchor" href="#四-部署云服务器的环境并将打包的前后端文件上传上去">#</a> 四、 部署云服务器的环境并将打包的前后端文件上传上去</h1>
+<h3 id="1-使用上面下载的x-shell和xftp安装软件nginx-jdk-mysql"><a class="anchor" href="#1-使用上面下载的x-shell和xftp安装软件nginx-jdk-mysql">#</a> 1、使用上面下载的 X-shell 和 Xftp 安装软件：<strong>nginx、jdk、mysql</strong></h3>
+<p><img data-src="https://s2.loli.net/2024/03/12/hOYrmWekdV1L5Q6.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/9516a25e3deb4da9bd8b0620639e1ca3.png" alt="" /></p>
+<h4 id="安装jdk18"><a class="anchor" href="#安装jdk18">#</a> 安装 jdk1.8</h4>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 要解压的目录			</span><br><span class="line">tar -zxvf /tmp/jdk-8u371-linux-x64.tar.gz -C /usr/local/</span><br><span class="line">mv /usr/local/jdk1.8.0_371 /usr/local/java</span><br><span class="line">   </span><br><span class="line">vi /etc/profile</span><br><span class="line"># 进到profile文件里进行编辑，再最后一行追加内容</span><br><span class="line">export JAVA_HOME=/usr/local/java</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line">#执行</span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line"># 验证</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure><br />
+<img data-src="https://s2.loli.net/2024/03/12/MZFnhrScHQpY6ue.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/87952263eef249dda2a602ea313ef8c6.png" alt="" /></p>
+<h4 id="安装nginx"><a class="anchor" href="#安装nginx">#</a> 安装 nginx</h4>
+<p>a. 安装库文件</p>
+<blockquote>
+<p>#安装 gcc<br />
+yum install gcc-c++</p>
+<p>#安装 PCRE pcre-devel<br />
+yum install -y pcre pcre-devel</p>
+<p>#安装 zlib<br />
+yum install -y zlib zlib-devel</p>
+<p>#安装 Open SSL<br />
+yum install -y openssl openssl-devel</p>
+</blockquote>
+<p>b. 解压、编译 nginx 并安装</p>
+<blockquote>
+<p>mkdir /usr/local/nginx<br />
+tar -zxvf /tmp/nginx-1.24.0.tar.gz -C /usr/local/nginx</p>
+<p>cd /usr/local/nginx/nginx-1.24.0<br />
+# 编译安装<br />
+./configure --with-http_stub_status_module --with-http_ssl_module<br />
+make &amp;&amp; make install</p>
+</blockquote>
+<p>c.nginx 命令</p>
+<blockquote>
+<p>cd /usr/local/nginx/sbin<br />
+./nginx # 启动</p>
+<p>ps -ef | grep nginx # 查看<br />
+./nginx -s stop # 停止<br />
+./nginx -s reload # 重启</p>
+</blockquote>
+<blockquote>
+<p>ps -ef | grep nginx</p>
+</blockquote>
+<p><img data-src="https://s2.loli.net/2024/03/12/sfkmwhqGUFjQYbL.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/ecb7a50970c3425087df3fd9b4692157.png" alt="" /></p>
+<p>d.nginx 配置</p>
+<p><img data-src="https://s2.loli.net/2024/03/12/1S4VmBLPkclzpYA.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/432e6bb1b60444e5b12382fbc7c1bd98.png" alt="" /></p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    </span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    </span><br><span class="line">    #access_log  logs/host.access.log  main;</span><br><span class="line">    </span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /home/server/honey2024/vue/dist;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files $uri $uri/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="" title="点击并拖拽以移动" /></p>
+<blockquote>
+<p>root 填写前端打包的文件 dist 位置；</p>
+<p>root /home/server/honey2024/vue/dist; // 访问你打包的 vue 文件 dis</p>
+<p>try_files $uri $uri//index.html; // 因为用了 vue-router</p>
+</blockquote>
+<p>e. 执行命令重启：</p>
+<blockquote>
+<p><strong>d /usr/local/nginx/sbin</strong></p>
+<p><strong>./nginx -s reload</strong></p>
+</blockquote>
+<h4 id="安装mysql"><a class="anchor" href="#安装mysql">#</a> 安装 mysql</h4>
+<p>linux 系统会自动携带一个数据库，我们需要把它给卸载掉</p>
+<p>通过以下代码可以查看 mariadb 并卸载</p>
+<blockquote>
+<p>rpm -qa | grep mariadb<br />
+yum remove -y mariadb-connector-c-3.1.11-2.oc8.1.x86_64<br />
+yum remove -y mariadb-connector-c-config-3.1.11-2.oc8.1.noarch</p>
+</blockquote>
+<p>下载 mysql 并 上传到 /tmp 目录</p>
+<p>安装 mysql 命令：</p>
+<blockquote>
+<p>mkdir /data/mysql<br />
+tar -zxvf /tmp/mysql-5.7.42-el7-x86_64.tar.gz -C /usr/local<br />
+mv /usr/local/mysql-5.7.42-el7-x86_64 /usr/local/mysql</p>
+<p>#添加用户组<br />
+ groupadd mysql<br />
+useradd -r -g mysql mysql<br />
+chown -R mysql.mysql /usr/local/mysql<br />
+chown -R mysql.mysql /data/mysql</p>
+<p>cd /usr/local/mysql<br />
+/usr/local/mysql/bin/mysqld --user=mysql --basedir=/usr/local/mysql/ --datadir=/data/mysql --initialize</p>
+<p>#将 mysql 加入到服务中<br />
+ cp /usr/local/mysql/support-files/mysql.server/etc/init.d/mysql</p>
+<p>#mysql 快捷方式<br />
+ ln -s /usr/local/mysql/bin/mysql/usr/bin<br />
+ln -s /usr/lib64/libtinfo.so.6.1 /usr/lib64/libtinfo.so.5<br />
+ln -s /usr/lib64/libncurses.so.6.1 /usr/lib64/libncurses.so.5</p>
+</blockquote>
+<p><img data-src="https://s2.loli.net/2024/03/12/wtORhejnGiMpbXd.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/a07f434f64b441be994253d38721489b.png" alt="" /></p>
+<blockquote>
+<p>记住上面的临时密码</p>
+</blockquote>
+<p>配置 mysql 配置文件 my.cnf</p>
+<p>vi /etc/my.cnf</p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">datadir=/data/mysql</span><br><span class="line">basedir=/usr/local/mysql</span><br><span class="line">socket=/tmp/mysql.sock</span><br><span class="line">user=mysql</span><br><span class="line">port=3306</span><br><span class="line">character-set-server=utf8</span><br><span class="line"># 取消密码验证</span><br><span class="line"># skip-grant-tables</span><br><span class="line"># # Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links=0</span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mysqld.log</span><br><span class="line">pid-file=/var/run/mysqld/mysqld.pid</span><br></pre></td></tr></table></figure></p>
+<p><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="" title="点击并拖拽以移动" /></p>
+<p>启动 mysql： <strong>service mysql start</strong><br />
+<img data-src="https://s2.loli.net/2024/03/12/GbtDk2QeIML9Pp4.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/6f2eb3caa5ce4b84ac946983fff4557a.png" alt="" /></p>
+<blockquote>
+<p>开机启动: <strong>chkconfig mysql on</strong></p>
+<p>登录 mysql： <strong>mysql -uroot -p</strong></p>
+<p>输入临时密码进入 mysql 修改密码并设置权限：</p>
+</blockquote>
+<p>修改密码并设置权限：</p>
+<blockquote>
+<p>SET PASSWORD = PASSWORD('1234');</p>
+<p>use mysql;<br />
+update user set host ='%'where user ='root' and host ='localhost';<br />
+flush privileges;<br />
+exit;</p>
+</blockquote>
+<p>使用 SQLyogt 连接 mysql<br />
+<img data-src="https://s2.loli.net/2024/03/12/5p8IozrvsNikdVg.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/2ab6a2c5a1454a8e9139d0be93d397c4.png" alt="" /></p>
+<p>设置服务器防火墙：</p>
+<p><img data-src="https://s2.loli.net/2024/03/12/Aytrz74mKqWZjli.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/img_convert/a3aba07361c9736e21cc4bbc1d5c304a.png" alt="" /></p>
+<p>新建数据库并将本地数据库导入远程的</p>
+<p><img data-src="https://s2.loli.net/2024/03/12/8hnF9ESTYcmKHwO.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/a668d0217a7e44a3b0690c51698afacc.png" alt="" /></p>
+<h3 id="2-部署前端文件dist"><a class="anchor" href="#2-部署前端文件dist">#</a> 2、部署前端文件 dist</h3>
+<blockquote>
+<p>使用 X-shell 和 Xftp 创建文件夹：mkdir -p /home/server/honey2024</p>
+<p>上传 dist 文件夹到 /home/server/honey2024/vue<br />
+<img data-src="https://s2.loli.net/2024/03/12/G81AVIKaUtLr2Cc.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/22482fc05efe48ff9e4a4b2b1ea872d2.png" alt="" /></p>
+</blockquote>
+<h3 id="3-部署后端文件jar"><a class="anchor" href="#3-部署后端文件jar">#</a> 3、部署后端文件 jar</h3>
+<blockquote>
+<p>上传 jar 包到服务器 /home/server/honey2024/java 目录</p>
+<p>设置 application.yml 覆盖</p>
+<p><img data-src="https://s2.loli.net/2024/03/12/Qo85wHYhsd4GfOT.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/158e7bc99ce44623950bfbe4d7ef7506.png" alt="" /></p>
+</blockquote>
+<p>添加 启动和停止脚本</p>
+<p>cd /home/server/honey2024/java</p>
+<p>vi <span class="exturl" data-url="aHR0cDovL3N0YXJ0LnNo">start.sh</span></p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME=springboot-0.0.1-SNAPSHOT.jar</span><br><span class="line">nohup java -jar $NAME &gt; server.log 2&gt;&amp;1 &amp;</span><br><span class="line">echo &#x27;start success&#x27;</span><br></pre></td></tr></table></figure></p>
+<p><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="" title="点击并拖拽以移动" /></p>
+<p>vi <span class="exturl" data-url="aHR0cDovL3N0b3Auc2g=">stop.sh</span></p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PORT=8082</span><br><span class="line">pid=`netstat -tnlp | grep $PORT | grep -v grep | awk &#x27;&#123;print $7&#125;&#x27; | awk -F/ &#x27;&#123;print $1&#125;&#x27;`</span><br><span class="line">if [ $&#123;pid&#125; ]; then</span><br><span class="line">    kill -9 $pid</span><br><span class="line">    echo &quot;kill $PORT&quot;</span><br><span class="line">else</span><br><span class="line">    echo &#x27;stop sucess!&#x27;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="" title="点击并拖拽以移动" /></p>
+<p>赋权 chmod +x *</p>
+<p><img data-src="https://s2.loli.net/2024/03/12/eyC8A4cjFItzrqM.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/img_convert/af71c27e94d0b3ed81d4ade71b0a0963.png" alt="" /></p>
+<blockquote>
+<p>去除脚本文件里的特殊符号（可选）</p>
+<p>sed -i 's/\r//' <span class="exturl" data-url="aHR0cDovL3N0YXJ0LnNo">start.sh</span></p>
+<p>sed -i 's/\r//' <span class="exturl" data-url="aHR0cDovL3N0b3Auc2g=">stop.sh</span></p>
+</blockquote>
+<p>完成后的目录文件：<br />
+<img data-src="https://s2.loli.net/2024/03/12/Jxbpt64o5NDvzS7.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/img_convert/82a26e54d3f33639b707cf8b01b26837.png" alt="" /></p>
+<h3 id="4-启动程序"><a class="anchor" href="#4-启动程序">#</a> 4、启动程序：</h3>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/server/honey2024/java</span><br><span class="line">./start.sh</span><br></pre></td></tr></table></figure></p>
+<p><img data-src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="" title="点击并拖拽以移动" /></p>
+<p>实时查看日志：<strong>tail -100f server.log</strong><br />
+<img data-src="https://s2.loli.net/2024/03/12/GQfnkVmty4PNUc3.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/direct/ee52847a4f204a8b98b5daab7e48318d.png" alt="" /></p>
+<p>设置防火墙端口 9090</p>
+<p><img data-src="https://s2.loli.net/2024/03/12/PiQwpEYj7R4ODVA.png" alt="输入图片说明" /><img data-src="https://img-blog.csdnimg.cn/img_convert/d8247649bb27d50bb809b9f9e0173f16.png" alt="" /></p>
+<p>之后，访问公网 ip 可以预览上线项目了</p>
+<p>题外话：可以<strong>在云服务器上安装宝塔面板来管理项目</strong></p>
+<p>​</p>
+
+      <div class="tags">
+          <a href="/tags/%E9%83%A8%E7%BD%B2%E4%B8%8A%E7%BA%BF/" rel="tag"><i class="ic i-tag"></i> 部署上线</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-03-12 10:23:15" itemprop="dateModified" datetime="2024-03-12T10:23:15+08:00">2024-03-12</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>YiYamimimi <i class="ic i-at"><em>@</em></i>每一个字节都藏着无尽的智慧与灵感，欢迎来到这场知识与思想的奇妙之旅！
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2024/03/12/front-end/deployment-cloudserver/" title="如何将前后分离的项目部署到云服务器">http://example.com/2024/03/12/front-end/deployment-cloudserver/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;uploadfile.bizhizu.cn&#x2F;up&#x2F;6f&#x2F;b5&#x2F;7a&#x2F;6fb57a3572d34d9f3d5621dc006c3cfb.jpg" title="Hello World">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>Hello World</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E8%B4%AD%E4%B9%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%85%BE%E8%AE%AF%E4%BA%91-%E9%98%BF%E9%87%8C%E4%BA%91"><span class="toc-number">1.</span> <span class="toc-text"> 一、购买服务器（腾讯云、阿里云……）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E4%B8%8B%E8%BD%BD-x-shell%E5%92%8Cxftp"><span class="toc-number">2.</span> <span class="toc-text"> 二、下载 X-shell 和 Xftp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E9%83%A8%E7%BD%B2%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text"> 三、部署前准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%8C%85%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6dis"><span class="toc-number">3.0.1.</span> <span class="toc-text"> 1、打包前端文件 dis</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%93%E5%8C%85npm-run-build"><span class="toc-number">3.0.1.0.0.1.</span> <span class="toc-text"> 打包：npm run build</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%93%E5%8C%85%E5%90%8E%E7%AB%AF%E6%96%87%E4%BB%B6jar"><span class="toc-number">3.0.2.</span> <span class="toc-text"> 2、打包后端文件 jar</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%93%E5%8C%85-mvn-clean-package-%E6%89%A7%E8%A1%8C%E6%89%93%E5%8C%85%E5%90%8E%E7%9A%84jar"><span class="toc-number">3.0.2.0.0.1.</span> <span class="toc-text"> 打包 ：mvn clean package 执行打包后的 jar</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%93%E5%8C%85%E5%90%8E%E5%8F%AF%E4%BB%A5%E5%85%88%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B%E8%BF%90%E8%A1%8C%E6%89%93%E5%8C%85%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">3.0.3.</span> <span class="toc-text"> 3、打包后可以先尝试一下运行打包的文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B-%E9%83%A8%E7%BD%B2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%8E%AF%E5%A2%83%E5%B9%B6%E5%B0%86%E6%89%93%E5%8C%85%E7%9A%84%E5%89%8D%E5%90%8E%E7%AB%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8A%E5%8E%BB"><span class="toc-number">4.</span> <span class="toc-text"> 四、 部署云服务器的环境并将打包的前后端文件上传上去</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E4%B8%8A%E9%9D%A2%E4%B8%8B%E8%BD%BD%E7%9A%84x-shell%E5%92%8Cxftp%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6nginx-jdk-mysql"><span class="toc-number">4.0.1.</span> <span class="toc-text"> 1、使用上面下载的 X-shell 和 Xftp 安装软件：nginx、jdk、mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85jdk18"><span class="toc-number">4.0.1.1.</span> <span class="toc-text"> 安装 jdk1.8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85nginx"><span class="toc-number">4.0.1.2.</span> <span class="toc-text"> 安装 nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85mysql"><span class="toc-number">4.0.1.3.</span> <span class="toc-text"> 安装 mysql</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6dist"><span class="toc-number">4.0.2.</span> <span class="toc-text"> 2、部署前端文件 dist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%83%A8%E7%BD%B2%E5%90%8E%E7%AB%AF%E6%96%87%E4%BB%B6jar"><span class="toc-number">4.0.3.</span> <span class="toc-text"> 3、部署后端文件 jar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.0.4.</span> <span class="toc-text"> 4、启动程序：</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2023/01/02/front-end/no-title/" rel="bookmark" title="Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）">Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）</a></li><li class="active"><a href="/2024/03/12/front-end/deployment-cloudserver/" rel="bookmark" title="如何将前后分离的项目部署到云服务器">如何将前后分离的项目部署到云服务器</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="YiYamimimi"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">YiYamimimi</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">11</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">5</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">5</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL1lpWWFtaW1pbWk/dGFiPXJlcG9zaXRvcmllcw==" title="https:&#x2F;&#x2F;github.com&#x2F;YiYamimimi?tab&#x3D;repositories"><i class="ic i-github"></i></span>
+      <span class="exturl item csdn" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxOTg1ODY5P3R5cGU9YmxvZw==" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_51985869?type&#x3D;blog"><i class="ic i-csdn"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2019/07/25/computer-science/note/theme-shoka-doc/code-highlight/" title="Code Highlight Style test">Code Highlight Style test</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/dependents/" title="Step.1 依赖插件">Step.1 依赖插件</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/12/31/computer-science/note/theme-shoka-doc/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/front-end/" title="分类于 前端">前端</a>
+</div>
+
+    <span><a href="/2024/03/12/front-end/deployment-cloudserver/" title="如何将前后分离的项目部署到云服务器">如何将前后分离的项目部署到云服务器</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/display/" title="Step.3 界面显示">Step.3 界面显示</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/front-end/" title="分类于 前端">前端</a>
+</div>
+
+    <span><a href="/2023/01/02/front-end/no-title/" title="Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）">Excel 导入导出（前端处理：xslx）（后端处理：hutool+poi || Easy Excel ）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2018/07/24/computer-science/note/theme-shoka-doc/markdown/" title="Markdown Style test">Markdown Style test</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/special/" title="Step.4 主题特殊功能">Step.4 主题特殊功能</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/theme-shoka-doc/" title="Hexo主题Shoka &amp; multi-markdown-it渲染器使用说明">Hexo主题Shoka & multi-markdown-it渲染器使用说明</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/" title="分类于 二进制杂谈">二进制杂谈</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9D%82%E8%B0%88/theme-shoka-doc/" title="分类于 Theme Shoka Documentation">Theme Shoka Documentation</a>
+</div>
+
+    <span><a href="/2020/08/13/computer-science/note/theme-shoka-doc/config/" title="Step.2 基本配置">Step.2 基本配置</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">YiYamimimi @ YiYamimimi</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/03/12/front-end/deployment-cloudserver/',
+    favicon: {
+      show: "YiYamimimi'blog",
+      hide: "YiYamimimi'blog"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
